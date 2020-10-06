@@ -19,6 +19,7 @@ namespace dak::QtAdditions
    // note: icon is a bitmap resource ID.
 
    QToolButton* CreateToolButton(const QString& text, int icon = 0, QKeySequence key = QKeySequence(), const QString& tooltip = nullptr, std::function<void()> = nullptr);
+   QToolButton* CreateToolButton(const wchar_t* text, int icon = 0, QKeySequence key = QKeySequence(), const wchar_t* tooltip = nullptr, std::function<void()> = nullptr);
    QToolButton* CreateToolButton(QAction* action);
    QToolButton* CreateToolButton();
 
@@ -28,6 +29,12 @@ namespace dak::QtAdditions
    // note: icon is a bitmap resource ID.
 
    QAction* CreateAction(const QString& text, int icon = 0, QKeySequence key = QKeySequence(), const QString& tooltip = nullptr, std::function<void()> = nullptr);
+   QAction* CreateAction(const wchar_t* text, int icon = 0, QKeySequence key = QKeySequence(), const wchar_t* tooltip = nullptr, std::function<void()> callback = nullptr);
+
+   // Create toggle action, with checkmark.
+   // Note: icon is a bitmap resource ID.
+   QAction* CreateToggle(const QString& text, int icon = 0, QKeySequence key = QKeySequence(), const QString& tooltip = "", std::function<void()> callback = nullptr);
+   QAction* CreateToggle(const wchar_t* text, int icon = 0, QKeySequence key = QKeySequence(), const wchar_t* tooltip = nullptr, std::function<void()> callback = nullptr);
 
    ////////////////////////////////////////////////////////////////////////////
    //

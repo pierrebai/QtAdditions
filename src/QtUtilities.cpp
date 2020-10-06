@@ -33,6 +33,11 @@ namespace dak::QtAdditions
       return CreateToolButton(CreateAction(text, icon, key, tooltip, callback));
    }
 
+   QToolButton* CreateToolButton(const wchar_t* text, int icon, QKeySequence key, const wchar_t* tooltip, std::function<void()> callback)
+   {
+      return CreateToolButton(QString::fromWCharArray(text ? text : L""), icon, key, QString::fromWCharArray(tooltip ? tooltip : L""), callback);
+   }
+
    QToolButton* CreateToolButton(QAction* action)
    {
       QToolButton* button = CreateToolButton();
@@ -54,6 +59,23 @@ namespace dak::QtAdditions
       if (callback)
          action->connect(action, &QAction::triggered, callback);
       return action;
+   }
+
+   QAction* CreateAction(const wchar_t* text, int icon, QKeySequence key, const wchar_t* tooltip, function<void()> callback)
+   {
+      return CreateAction(QString::fromWCharArray(text ? text : L""), icon, key, QString::fromWCharArray(tooltip ? tooltip : L""), callback);
+   }
+
+   QAction* CreateToggle(const QString& text, int icon, QKeySequence key, const QString& tooltip, std::function<void()> callback)
+   {
+      QAction* action = CreateAction(text, icon, key, tooltip, callback);
+      action->setCheckable(true);
+      return action;
+   }
+
+   QAction* CreateToggle(const wchar_t* text, int icon, QKeySequence key, const wchar_t* tooltip, std::function<void()> callback)
+   {
+      return CreateToggle(QString::fromWCharArray(text ? text : L""), icon, key, QString::fromWCharArray(tooltip ? tooltip : L""), callback);
    }
 
    filesystem::path AskOpen(const QString& title, const QString& file_types, QWidget* parent)
