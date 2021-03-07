@@ -47,6 +47,7 @@ namespace dak::QtAdditions
    // Show a dialog to open or save something.
 
    std::filesystem::path AskOpen(const QString& title, const QString& file_types, QWidget* parent);
+   std::filesystem::path AskOpen(const QString& title, const QString& file_types, const QString& initialContent, QWidget* parent);
    std::filesystem::path AskSave(const QString& title, const QString& file_types, const QString& initialContent, QWidget* parent);
 
    ////////////////////////////////////////////////////////////////////////////

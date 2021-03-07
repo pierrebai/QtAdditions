@@ -80,7 +80,12 @@ namespace dak::QtAdditions
 
    filesystem::path AskOpen(const QString& title, const QString& file_types, QWidget* parent)
    {
-      const QString qfn = QFileDialog::getOpenFileName(parent, title, QString(), file_types);
+      return AskOpen(title, file_types, QString(), parent);
+   }
+
+   filesystem::path AskOpen(const QString& title, const QString& file_types, const QString& initialContent, QWidget* parent)
+   {
+      const QString qfn = QFileDialog::getOpenFileName(parent, title, initialContent , file_types);
 
       return qfn.toStdWString();
    }
