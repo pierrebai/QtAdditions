@@ -19,6 +19,7 @@ find_package(Qt5 COMPONENTS WinExtras REQUIRED)
 # QtAdditions
 
 add_library(QtAdditions
+   src/QHeaderViewWithWIdgets.cpp   include/dak/QtAdditions/QHeaderViewWithWIdgets.h
    src/QtUtilities.cpp              include/dak/QtAdditions/QtUtilities.h
    src/QWidgetListItem.cpp          include/dak/QtAdditions/QWidgetListItem.h
    src/QWidgetScrollListWidget.cpp  include/dak/QtAdditions/QWidgetScrollListWidget.h
