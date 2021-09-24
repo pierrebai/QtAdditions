@@ -12,11 +12,11 @@ namespace dak::QtAdditions
 {
    /////////////////////////////////////////////////////////////////////////
    //
-   // Complex widget kept in a list widget.
+   // A list widget header view that can contains widgets in the header.
 
    struct QHeaderViewWithWidgets : QHeaderView
    {
-      // Create an item.
+      // Create an header view.
       QHeaderViewWithWidgets(Qt::Orientation orientation, QWidget* parent = nullptr);
       ~QHeaderViewWithWidgets();
 
@@ -30,6 +30,7 @@ namespace dak::QtAdditions
 
       void showEvent(QShowEvent* event) override;
 
+      // Reposition the widgets over the headers.
       void fixWidgetPosition(int section);
       void fixWidgetPositions();
 
