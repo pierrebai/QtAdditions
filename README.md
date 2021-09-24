@@ -20,6 +20,10 @@ Here is an example showing how the widget looks:
 
 Allow putting a comb-box widget inside a multi-column list widget.
 
+## QHeaderViewWithWidgets
+
+Allow putting widgets in the header row of a table view.
+
 ## QtUtilities
 
 Various functions to create toolbar buttons, create actions, use the open or save dialogs,
