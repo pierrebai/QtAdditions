@@ -27,7 +27,7 @@ a table (`QTableWidget`) or list (`QListWidget`). The custom header view tracks
 the widgets that are placed at the top of each column. It also handles placing
 and resizing the widgets so that they fit within the header.
 
-Since the widgets are placed on top of the header, it is recommended to *not*
+Since the widgets are drawn on top of the header, it is recommended to *not*
 set any title for that column and instead use a widget that has a label. Since
 we support any widget, you can create a container to place an additional label
 if the widget you want to use does not have a label.
@@ -37,14 +37,14 @@ before their children. Since the additional widgets are children of the header
 view, they get painted after the header and thus appear on top of it.
 
 The API to use the custom header is very simple. You simply create an instance
-of `QHeaderViewWithWidgets`, add the widgets to the column (called sectin in Qt),
+of `QHeaderViewWithWidgets`, add the widgets to the column (called section in Qt),
 and set the header view on your table. In short, it looks like this:
 
 ```C++
    // Create a combo-box for the header.
    auto col1_check = new QCheckBox("My checkbox");
 
-   // Create the header view with the combo-box for coulmn 1.
+   // Create the header view with the combo-box for column 1.
    auto header = new QHeaderViewWithWidgets(Qt::Orientation::Horizontal);
    header->addSectionWidget(1, col1_check);
 
