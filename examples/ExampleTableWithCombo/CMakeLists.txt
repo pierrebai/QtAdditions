@@ -1,3 +1,10 @@
+cmake_minimum_required(VERSION 3.7.0)
+
+project(ExampleTableWithCombo)
+
+add_definitions(-DUNICODE)
+add_definitions(-D_UNICODE)
+
 # Qt 5 stuff
 
 set(CMAKE_AUTOMOC ON)

@@ -44,7 +44,7 @@ target_include_directories(QtAdditions PUBLIC
    "${Qt5WinExtras_INCLUDE_DIRS}"
 )
 
-add_subdirectory(examples/ExampleTableWithCombo)
-add_subdirectory(examples/ExampleWidgetList)
-add_subdirectory(examples/ExampleListHeaderWidget)
+add_subdirectory(examples/ExampleTableWithCombo EXCLUDE_FROM_ALL)
+add_subdirectory(examples/ExampleWidgetList EXCLUDE_FROM_ALL)
+add_subdirectory(examples/ExampleListHeaderWidget EXCLUDE_FROM_ALL)
 
