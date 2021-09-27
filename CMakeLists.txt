@@ -19,6 +19,7 @@ find_package(Qt5 COMPONENTS WinExtras REQUIRED)
 # QtAdditions
 
 add_library(QtAdditions
+   README.md
    src/QHeaderViewWithWIdgets.cpp   include/dak/QtAdditions/QHeaderViewWithWIdgets.h
    src/QtUtilities.cpp              include/dak/QtAdditions/QtUtilities.h
    src/QWidgetListItem.cpp          include/dak/QtAdditions/QWidgetListItem.h
@@ -42,4 +43,8 @@ target_include_directories(QtAdditions PUBLIC
    "${Qt5Gui_INCLUDE_DIRS}"
    "${Qt5WinExtras_INCLUDE_DIRS}"
 )
+
+add_subdirectory(examples/ExampleTableWithCombo)
+add_subdirectory(examples/ExampleWidgetList)
+add_subdirectory(examples/ExampleListHeaderWidget)
 

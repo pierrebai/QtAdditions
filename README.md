@@ -5,6 +5,8 @@ interfaces in Qt.
 
 # Contents
 
+These are the classes a functions found in the `include` and `src` folders.
+
 ## QWidgetListWidget
 
 A Qt list  widget containing complex sub-widgets.
@@ -30,18 +32,25 @@ Various functions to create toolbar buttons, create actions, use the open or sav
 ask questions, create pixmap from Windows bitmap resources. 
 
 
-# Dependencies and Build 
+# Examples
+
+The `examples` folder contains multiple simple example application for many of these classes.
+They also contain more extensive documentation about the design of each Qt utility classes.
+
+
+# Dependencies and Build
+
 The project requires Qt. It was built using Qt 5.15. It uses CMake to build the project. CMake 3.7 was used.
 
 A script to generate a Visual-Studio solution is provided. In order for CMake to find Qt,
-the environment variable QT5_DIR must be defined and must point to the Qt 5.12 directory.
+the environment variable QT5_DIR must be defined and must point to the Qt 5.15 directory.
 For example:
 
-        QT5_DIR=C:\Outils\Qt\5.15.0\
+        QT5_DIR=C:\Tools\Qt\5.15.0\msvc2019_64
 
 Alternatively, to invoke cmake directly, it needs to be told where to find Qt.
 It needs the environment variable CMAKE_PREFIX_PATH set to the location of Qt.
 For example:
 
-        CMAKE_PREFIX_PATH=%QT5_DIR%\msvc2019_64
+        CMAKE_PREFIX_PATH=C:\Tools\Qt\5.15.0\msvc2019_64
 

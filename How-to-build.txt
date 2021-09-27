@@ -1,0 +1,6 @@
+1. You need Visual Studio 2019. I used the community edition version.
+2. You need to install the Qt5 SDK. You need to install the 64-bit SDK as the solution is 64-bit.
+3. You need to set an environment variable pointing to the Qt5 SDK. The name is QT5_DIR. For example, I set mine to: C:\Tools\Qt5\5.15.0\
+4. Use the Create-Solution.cmd script to create the Visual Studio solution.
+5. Open the generated solution and build. It will copy the necesary Qt5 DLL in the output folder so the program can run.
+
