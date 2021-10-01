@@ -1,17 +1,35 @@
 #include "dak/QtAdditions/QHeaderViewWithWidgets.h"
 
-#include <QtWidgets/qcombobox.h>
+#include <QtWidgets/qtableview.h>
+#include <QtWidgets/qtreeview.h>
+#include <QtWidgets/qscrollbar.h>
 
 namespace dak::QtAdditions
 {
    using namespace std;
 
-   QHeaderViewWithWidgets::QHeaderViewWithWidgets(Qt::Orientation orientation, QWidget* parent)
-      : QHeaderView(orientation, parent)
+   QHeaderViewWithWidgets::QHeaderViewWithWidgets(Qt::Orientation orientation)
+      : QHeaderView(orientation)
    {
       connect(this, &QHeaderViewWithWidgets::sectionResized, [self = this](int section, int oldSize, int newSize) { self->handleSectionResized(section, oldSize, newSize); });
       connect(this, &QHeaderViewWithWidgets::sectionMoved, [self = this](int section, int oldVisualIndex, int newVisualIndex) { self->handleSectionMoved(section, oldVisualIndex, newVisualIndex); });
       connect(this, &QHeaderViewWithWidgets::geometriesChanged, [self = this]() { self->fixWidgetPositions(); });
+   }
+
+   QHeaderViewWithWidgets::QHeaderViewWithWidgets(Qt::Orientation orientation, QTableView* parent)
+      : QHeaderViewWithWidgets(orientation)
+   {
+      parent->setHorizontalHeader(this);
+      if (auto scrollbar = parent->horizontalScrollBar())
+         connect(scrollbar, &QScrollBar::valueChanged, [self = this](int) { self->fixWidgetPositions(); });
+   }
+
+   QHeaderViewWithWidgets::QHeaderViewWithWidgets(Qt::Orientation orientation, QTreeView* parent)
+      : QHeaderViewWithWidgets(orientation)
+   {
+      parent->setHeader(this);
+      if (auto scrollbar = parent->horizontalScrollBar())
+         connect(scrollbar, &QScrollBar::valueChanged, [self = this](int) { self->fixWidgetPositions(); });
    }
 
    QHeaderViewWithWidgets::~QHeaderViewWithWidgets()

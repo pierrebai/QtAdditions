@@ -26,22 +26,21 @@ int main(int argc, char **argv)
 
    /////////////////////////////////////////////////////////////////////////
    //
-   // Create the header view with combo-boxes.
-
-   auto header = new QHeaderViewWithWidgets(Qt::Orientation::Horizontal);
-   header->addSectionWidget(1, col1_check);
-   header->addSectionWidget(2, col2_combo);
-   header->setMinimumSectionSize(100);
-
-   /////////////////////////////////////////////////////////////////////////
-   //
    // Create the table list with a combo-box column.
 
    auto list = new QTableWidget;
 
+   /////////////////////////////////////////////////////////////////////////
+   //
+   // Create the header view with combo-boxes.
+
+   auto header = new QHeaderViewWithWidgets(Qt::Orientation::Horizontal, list);
+   header->addSectionWidget(1, col1_check);
+   header->addSectionWidget(2, col2_combo);
+   header->setMinimumSectionSize(100);
+
    // Create columns header labels and some other non-essential settings.
    list->setColumnCount(3);
-   list->setHorizontalHeader(header);
    list->setHorizontalHeaderLabels(QStringList({ "Normal Column 1", "", "" }));
    list->verticalHeader()->hide();
    list->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
