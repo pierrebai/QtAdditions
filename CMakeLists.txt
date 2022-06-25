@@ -14,7 +14,6 @@ set(CMAKE_AUTOUIC ON)
 find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Gui REQUIRED)
-find_package(Qt5 COMPONENTS WinExtras REQUIRED)
 
 # QtAdditions
 
@@ -41,8 +40,17 @@ target_include_directories(QtAdditions PUBLIC
    "${Qt5Core_INCLUDE_DIRS}"
    "${Qt5Widgets_INCLUDE_DIRS}"
    "${Qt5Gui_INCLUDE_DIRS}"
+)
+
+if (WIN32)
+
+find_package(Qt5 COMPONENTS WinExtras REQUIRED)
+
+target_include_directories(QtAdditions PUBLIC
    "${Qt5WinExtras_INCLUDE_DIRS}"
 )
+
+endif()
 
 add_subdirectory(examples/ExampleTableWithCombo EXCLUDE_FROM_ALL)
 add_subdirectory(examples/ExampleWidgetList EXCLUDE_FROM_ALL)

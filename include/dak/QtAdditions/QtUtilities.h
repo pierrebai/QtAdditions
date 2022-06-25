@@ -38,7 +38,7 @@ namespace dak::QtAdditions
 
    ////////////////////////////////////////////////////////////////////////////
    //
-   // Create pixmap from a bitmap resource. A mask will automatically be created.
+   // Create pixmap from a Windows bitmap resource. A mask will automatically be created.
 
    QPixmap CreatePixmapFromResource(int res);
 
