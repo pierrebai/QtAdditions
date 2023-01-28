@@ -106,6 +106,12 @@ namespace dak::QtAdditions
       return size;
    }
 
+   QTableWidgetWithComboBox::ComboItemFilterFunction QTableWidgetWithComboBox::identity_filter =
+      [](QTableWidgetWithComboBox* table, const QStringList& combo_items) -> QStringList
+      {
+         return combo_items;
+      };
+
    ////////////////////////////////////////////////////////////////////////////
    //
    // A QTableWidget containing a combo-box that appears
@@ -132,10 +138,11 @@ namespace dak::QtAdditions
 
    // Create the table widget with the combo-box items list.
    QTableWidgetWithComboBox::QTableWidgetWithComboBox(int col, const QStringList& items, QWidget* parent)
-      : QTableWidget(parent), combo_column(col), combo_items(items)
+      : QTableWidget(parent), combo_column(col), combo_items(items), combo_filter(identity_filter)
    {
+      delegate = new QItemDelegateWithComboBox(items, this);
       setColumnCount(col + 1);
-      setItemDelegateForColumn(col, new QItemDelegateWithComboBox(items, this));
+      setItemDelegateForColumn(col, delegate);
    }
 
    // Process mouse events to create the combo-box on the first mouse click.
@@ -150,6 +157,10 @@ namespace dak::QtAdditions
             {
                const QModelIndex other_index = model()->index(index.row(), combo_column > 0 ? 0 : 1);
                selection->setCurrentIndex(other_index, QItemSelectionModel::SelectionFlag::ClearAndSelect);
+            }
+            if (delegate)
+            {
+               delegate->combo_items = combo_filter(this, combo_items);
             }
             QTimer::singleShot(1, [self = this, index = index]()
             {

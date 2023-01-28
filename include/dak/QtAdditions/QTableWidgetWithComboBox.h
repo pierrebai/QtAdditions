@@ -11,6 +11,8 @@
 
 namespace dak::QtAdditions
 {
+   class QItemDelegateWithComboBox;
+
    ////////////////////////////////////////////////////////////////////////////
    //
    // A QTableWidget containing a combo-box that appears
@@ -38,9 +40,14 @@ namespace dak::QtAdditions
    class QTableWidgetWithComboBox : public QTableWidget
    {
    public:
+      // Function used to filter the combo-box items before displaying them.
+      using ComboItemFilterFunction = std::function<QStringList(QTableWidgetWithComboBox* table, const QStringList& combo_items)>;
+      static ComboItemFilterFunction identity_filter;
+
       // The column cotaining a combo-box and the text items.
       int combo_column;
       QStringList combo_items;
+      ComboItemFilterFunction combo_filter = identity_filter;
 
       // Create the table widget with the combo-box items list.
       QTableWidgetWithComboBox(int col, const QStringList& items, QWidget* parent = nullptr);
@@ -48,6 +55,8 @@ namespace dak::QtAdditions
    protected:
       // Process mouse events to create the combo-box on the first mouse click.
       void mousePressEvent(QMouseEvent* event) override;
+
+      QItemDelegateWithComboBox* delegate = nullptr;
    };
 
    ////////////////////////////////////////////////////////////////////////////
