@@ -36,19 +36,13 @@ target_include_directories(QtAdditions PUBLIC
    include
 )
 
-target_include_directories(QtAdditions PUBLIC
-   "${Qt5Core_INCLUDE_DIRS}"
-   "${Qt5Widgets_INCLUDE_DIRS}"
-   "${Qt5Gui_INCLUDE_DIRS}"
-)
+target_link_libraries(QtAdditions Qt5::Core Qt5::Widgets Qt5::Gui)
 
 if (WIN32)
 
 find_package(Qt5 COMPONENTS WinExtras REQUIRED)
 
-target_include_directories(QtAdditions PUBLIC
-   "${Qt5WinExtras_INCLUDE_DIRS}"
-)
+target_link_libraries(QtAdditions Qt5::WinExtras)
 
 endif()
 
